@@ -2,10 +2,27 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Vet Index Page</title>
+    <title>Owner Index Page</title>
 </head>
 <body>
-<h1 th:text="'List of owners'">List of Owners</h1>
+<!--/*@thymesVar id="owner" type="guru.springframework.sfgpetclinic.model.Owner"*/-->
 
+<h1 th:text="'List of owners'">List of Owners</h1>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th style="width: 150px;">Id</th>
+        <th style="width: 150px;">First Name</th>
+        <th style="width: 150px;">Last Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="owner : ${owners}">
+        <td th:text="${owner.id}">1</td>
+        <td th:text="${owner.firstName}">Joe</td>
+        <td th:text="${owner.lastName}">Buck</td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
