@@ -5,7 +5,6 @@ import guru.springframework.sfgpetclinic.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.awt.dnd.DragSourceAdapter;
 import java.time.LocalDate;
 
 @Component
@@ -15,12 +14,14 @@ public class DataLoander implements CommandLineRunner { /// یکی از روش �
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialityService specialityService;
+    private final VisitService visitService;
 
-    public DataLoander(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService) {
+    public DataLoander(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialityService = specialityService;
+        this.visitService = visitService;
     }
 
     @Override
@@ -82,6 +83,12 @@ public class DataLoander implements CommandLineRunner { /// یکی از روش �
         owner2.getPets().add(michlePet);
 
         ownerService.save(owner2);
+
+        Visit catVisit = new Visit();
+        catVisit.setPet(mikesPet);
+        catVisit.setDescription("sneezy kitty");
+        catVisit.setDate(LocalDate.now());
+        visitService.save(catVisit);
 
         System.out.println("Loaded Owners....");
 
