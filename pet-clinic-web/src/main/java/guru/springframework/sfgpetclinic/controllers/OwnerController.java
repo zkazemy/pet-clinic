@@ -82,13 +82,13 @@ public class OwnerController {
     }
 
     @PostMapping("/{ownerId}/edit")
-    public String processUpdateOwne
-            return "redirect:/owners/"+owner.getId();rForm(Owner owner, BindingResult result, @PathVariable Long ownerId) {
-                if (result.hasErrors()) {
-                    return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
-                } else {
-                    owner.setId(ownerId);
-                    Owner savedOwner = ownerService.save(owner);
+    public String processUpdateOwnerForm(Owner owner, BindingResult result, @PathVariable Long ownerId) {
+        if (result.hasErrors()) {
+            return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
+        } else {
+            owner.setId(ownerId);
+            Owner savedOwner = ownerService.save(owner);
+            return "redirect:/owners/"+owner.getId();
         }
     }
 
