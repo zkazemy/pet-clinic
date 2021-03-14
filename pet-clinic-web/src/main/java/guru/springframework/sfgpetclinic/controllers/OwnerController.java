@@ -21,12 +21,6 @@ public class OwnerController {
         this.ownerService = ownerService;
     }
 
-//    @RequestMapping({"", "/","/index","/index.html"})
-//    public String listOwners(Model model) {
-//        model.addAttribute("owners", ownerService.findAll());
-//        return "owners/index";
-//    }
-
     @InitBinder// امکان بررسی درخواست آمده رو تغییر مقادیر و یا فرمت دهی و یا هر گونه بررسی را مید هد
     public void setAllowedFields(WebDataBinder dataBinder)
     {
@@ -71,14 +65,30 @@ public class OwnerController {
         return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
     }
 
-    @PostMapping("/{ownerId}/edit")
-    public String processUpdateOwnerForm(Owner owner, BindingResult result, @PathVariable Long ownerId) {
+    @GetMapping("/new")
+    public String initCreationForm(Model model) {
+        model.addAttribute("owner", new Owner());
+        return "owners/createOrUpdateOwnerForm";
+    }
+
+    @PostMapping("/new")
+    public String processCreationForm(Owner owner, BindingResult result) {
         if (result.hasErrors()) {
             return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
         } else {
-            owner.setId(ownerId);
-            Owner savedOwner = ownerService.save(owner);
-            return "redirect:/owners/"+owner.getId();
+            Owner savedOwner =  ownerService.save(owner);
+            return "redirect:/owners/" + savedOwner.getId();
+        }
+    }
+
+    @PostMapping("/{ownerId}/edit")
+    public String processUpdateOwne
+            return "redirect:/owners/"+owner.getId();rForm(Owner owner, BindingResult result, @PathVariable Long ownerId) {
+                if (result.hasErrors()) {
+                    return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
+                } else {
+                    owner.setId(ownerId);
+                    Owner savedOwner = ownerService.save(owner);
         }
     }
 
