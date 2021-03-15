@@ -16,9 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
-/**
- * Created by jt on 9/22/18.
- */
 @Controller
 @RequestMapping("/owners/{ownerId}")
 public class PetController {
@@ -82,7 +79,6 @@ public class PetController {
     }
 
     @PostMapping("/pets/{petId}/edit")
-
     public String processUpdateForm( Pet pet, BindingResult result, Owner owner, Model model) {
         if (result.hasErrors()) {
             pet.setOwner(owner);
