@@ -39,7 +39,7 @@ public class DataLoander implements CommandLineRunner { /// یکی از روش �
         PetType savedDog = petTypeService.save(dog);
 
         PetType cat = new PetType();
-        cat.setName("Dog");
+        cat.setName("Cat");
         PetType savedCat = petTypeService.save(cat);
 
         Speciality radiology = new Speciality();
